@@ -1,10 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>CG3's Site</title>
-</head>
-<body>
-	<p>Welcome to my GitHub page!</p>
-</body>
+  <head>
+    <title>CG3</title>
+    <link rel="shortcut icon" href="pics/icon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="Style.css">
+  </head>
+  <body>
+
+
+    <div class="tab">
+      <button class="tablinks" onclick="openTab(event, 'main')" id="defaultOpen">Main</button>
+      <button class="tablinks" onclick="openTab(event, 'bball');">BallDontLie</button>
+    </div>
+
+    <br>
+
+    <div id="main" class="tabcontent">
+      <h3 align="center">Welcome!</h3>
+      <h2 align="center">Check out BallDontLie to find out about your favorite bball players. Enjoy! </h2>
+    </div>
+
+    <div id="bball" class="tabcontent">
+      <h3>BallDontLie</h3>
+      <form>
+        <label>Enter a player's name to find out how many points they scored on this day each year: </label>
+        <input id="playerName" type="text" placeholder="Lebron James"></input><br/>
+        <label>Enter a date in 'mm/dd' format: </label>
+        <input id="date" type="text" placeholder="04/15" maxlength="5"></input><br/>
+        <input id="bballSubmit" type="Submit" value="Submit"></input>
+        <div class="loader" id="img" style="display:none"></div>
+      </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script text="type/javascript" src="script.js"></script>
+
+    <div class="footer">
+      <p class="left"><img src="pics/cr.png"> 2020 The CG3 Company</p>
+      <p class="right"><img src="pics/github.svg"><a href="https://github.com/cagu3">GitHub</a></p>
+    </div>
+
+  </body>
 </html>
-  

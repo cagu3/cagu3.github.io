@@ -1,0 +1,157 @@
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas: 
+        "header header"
+        "main"
+        "footer footer";
+    grid-gap: 50px;
+}
+
+.footer {
+    grid-area: footer;
+    background-color: lightgrey;
+    height: 100px;
+}
+
+p.right {
+	float: right;
+	color: blue;
+	padding: 40px;
+}
+
+.footer img {
+	width: 20px;
+	height: auto;
+}
+
+p.left {
+	float: left;
+	color: black;
+	padding: 40px;
+}
+
+p.upper {
+    font-size: 30px;
+}
+
+
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #1389DB;
+}
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+.tab button:hover {
+    background-color: lightblue;
+}
+
+.tab button.active {
+    background-color: blue;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+
+h1 {
+	font-size: 50px;
+	color: blue;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+	font-size: 50px;
+}
+
+h4 {
+	font-size: 50px;
+	text-decoration: underline;
+    
+}
+
+h5 {
+	font-size: 30px;
+}
+
+
+p {
+	font-size: 25px;
+}
+
+label {
+	font-size: 30px;
+}
+
+input {
+	font-size: 30px;
+}
+
+button {
+	color: white;
+}
+
+img {
+	width: 10%;
+	height: auto;
+}
+
+#img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a {
+	font-size: 20px
+}
+
+a:visited {
+    color: blue;
+}
+
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #1389DB;
+  border-bottom: 16px solid #1389DB;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+
+
