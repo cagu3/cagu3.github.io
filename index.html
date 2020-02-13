@@ -9,7 +9,7 @@
 
 
     <div class="tab">
-      <button class="tablinks" onclick="openTab(event, 'main')" id="defaultOpen">Main</button>
+      <button class="tablinks" onclick="openTab(event, 'main');" id="defaultOpen">Main</button>
       <button class="tablinks" onclick="openTab(event, 'bball');">BallDontLie</button>
     </div>
 
@@ -32,7 +32,11 @@
       </form>
     </div>
 
+    <div id="bballGraph" style="display:none"></div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.7.1/js/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.7.1/js/anychart-cartesian.min.js"></script>
     <script text="type/javascript" src="script.js"></script>
 
     <div class="footer">

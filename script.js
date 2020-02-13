@@ -84,15 +84,19 @@ $(document).ready(function() {
 							var nullVal = false;
 							while (i < json.data.length) {
 								totalPts += json.data[i].pts;
-								if (json.data[i].pts == null) nullVal = true;
+								if (json.data[i].pts == null) {
+									nullVal = true;
+								}
 								i++;
 							}
+
 							results += '<p align="center" class="upper"><strong>' + totalPts
 							if (nullVal == true) results += '*'
 							results += '</strong> total points</p align="center" class="upper">';
 							results += '<p align="center" class="upper"> On ' + mm + '/' + dd + ' throughout his career</p align="center" class="upper">';
 
-							var j = 0; 
+							var j = 0;
+							var graphData = [];
 							while (j < json.data.length) {
 								var year = json.data[j].game.date.substring(0,4);
 
@@ -107,19 +111,36 @@ $(document).ready(function() {
 											awayTeam = json.full_name;
 										}
 								});
+
 								var points = json.data[j].pts;
 								results += '<p align="center">';
 								if (points == null) {
-									results += '*Sorry, we\'re not sure how many points he scored '; 
+									results += '*Sorry, we\'re not sure how many points he scored ';
 								}
 								else {
-									results += json.data[j].pts + ' pts ';
+									results += points + ' pts ';
+									graphData.push([year, points]); // TODO: put the years in order
 								}
+
 								results += 'vs the ' + awayTeam + ' in ' + year + '</p>';
 								j++;
 							}
-						}
 
+							var chart = anychart.line();
+						   var series = chart.line(graphData);
+						    
+						   chart.title("Points on This Day");
+
+						   var xAxis = chart.xAxis();
+						   xAxis.title("Year");
+						   var yAxis = chart.yAxis();
+						   yAxis.title("Points");
+
+						   chart.container("bballGraph");
+						   chart.draw();
+
+						   $('#bballGraph').show(); // TODO: figure out how to make this disappear when going back to the Main tab
+						}
 						$('#img').hide();
 						$("#bball").html(results);
 					}
