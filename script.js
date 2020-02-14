@@ -82,25 +82,19 @@ $(document).ready(function() {
 
 							var i = 0;
 							var nullVal = false;
+
+							var gameStats = [];
+							var points = 0;
+							var year = 0;
 							while (i < json.data.length) {
 								totalPts += json.data[i].pts;
 								if (json.data[i].pts == null) {
 									nullVal = true;
 								}
-								i++;
-							}
 
-							results += '<p align="center" class="upper"><strong>' + totalPts
-							if (nullVal == true) results += '*'
-							results += '</strong> total points</p align="center" class="upper">';
-							results += '<p align="center" class="upper"> On ' + mm + '/' + dd + ' throughout his career</p align="center" class="upper">';
+								year = json.data[i].game.date.substring(0,4);
 
-							var j = 0;
-							var graphData = [];
-							while (j < json.data.length) {
-								var year = json.data[j].game.date.substring(0,4);
-
-								var teamurl = "https://www.balldontlie.io/api/v1/teams/" + json.data[j].game.visitor_team_id;
+								var teamurl = "https://www.balldontlie.io/api/v1/teams/" + json.data[i].game.visitor_team_id;
 								console.log(encodeURI(teamurl));
 								var awayTeam;
 								$.ajax({
@@ -112,19 +106,40 @@ $(document).ready(function() {
 										}
 								});
 
-								var points = json.data[j].pts;
+								points = json.data[i].pts;
+								gameStats[i] = [year, points, awayTeam];
+
+								i++;
+							}
+
+							gameStats.sort(function(a,b) {
+								return a[0] - b[0];
+							});
+
+							results += '<p align="center" class="upper"><strong>' + totalPts
+							if (nullVal == true) results += '*'
+							results += '</strong> total points</p align="center" class="upper">';
+							results += '<p align="center" class="upper"> On ' + mm + '/' + dd + ' throughout his career</p align="center" class="upper">';
+
+							var j = 0;
+							var graphData = [];
+							while (j < json.data.length) {
 								results += '<p align="center">';
-								if (points == null) {
+								if (gameStats[j][1] == null) {
 									results += '*Sorry, we\'re not sure how many points he scored ';
 								}
 								else {
-									results += points + ' pts ';
-									graphData.push([year, points]); // TODO: put the years in order
+									results += gameStats[j][1] + ' pts ';
+									graphData.push([gameStats[j][0], gameStats[j][1]]);
 								}
 
-								results += 'vs the ' + awayTeam + ' in ' + year + '</p>';
+								results += 'vs the ' + gameStats[j][2] + ' in ' + gameStats[j][0] + '</p>';
 								j++;
 							}
+
+							graphData.sort(function(a,b) {
+								return a[0] - b[0];
+							});
 
 							var chart = anychart.line();
 						   var series = chart.line(graphData);
